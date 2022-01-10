@@ -16,13 +16,16 @@ class Login extends StatefulWidget {
 }
 
 class _State extends State<Login> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController tinController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  String errorText = '';
+  String password = '';
+  bool isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavigationDrawerWidget(),
+        drawer: NavigationDrawerWidget(),
         appBar: AppBar(
           title: Text('FCT-IRS'),
         ),
@@ -34,7 +37,7 @@ class _State extends State<Login> {
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'Self Service',
+                      'Login',
                       style: TextStyle(
                           color: Colors.green,
                           fontWeight: FontWeight.w500,
@@ -49,8 +52,9 @@ class _State extends State<Login> {
                     )),
                 Container(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
-                    controller: nameController,
+                  child: TextFormField(
+                    controller: tinController,
+                    validator: (value) {},
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'TIN',
@@ -60,16 +64,34 @@ class _State extends State<Login> {
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
-                    obscureText: true,
+                    // validator: (value) {
+                    //   if(passwordController.text.isEmpty){
+                    //     return 'Password is Required';
+                    //   } else {
+                    //     return null;
+                    //   }
+                    // },
                     controller: passwordController,
+                    onChanged: (value) => setState(() => this.password = value),
+                    onSubmitted: (value) =>
+                        setState(() => this.password = value),
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Password',
+                      //errorText: 'Password is wrong',
+                      suffixIcon: IconButton(
+                        icon: isPasswordVisible
+                            ? Icon(Icons.visibility_off)
+                            : Icon(Icons.visibility),
+                        onPressed: () => setState(
+                            () => isPasswordVisible = !isPasswordVisible),
+                      ),
                     ),
+                    obscureText: isPasswordVisible,
                   ),
                 ),
                 FlatButton(
-                  onPressed: (){
+                  onPressed: () {
                     //forgot password screen
                   },
                   textColor: Colors.green,
@@ -82,29 +104,31 @@ class _State extends State<Login> {
                       textColor: Colors.white,
                       color: Colors.green,
                       child: Text('Login'),
+                      //call the API for the login logic
                       onPressed: () {
-                        print(nameController.text);
-                        print(passwordController.text);
+                        print('TIN: ${tinController.text}');
+                        print('Password: ${password}');
                       },
                     )),
                 Container(
                     child: Row(
-                      children: <Widget>[
-                        Text('Does not have account?'),
-                        FlatButton(
-                          textColor: Colors.green,
-                          child: Text(
-                            'Register',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => Register() ));
-                            //signup screen
-                          },
-                        )
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    ))
+                  children: <Widget>[
+                    Text('Does not have account?'),
+                    FlatButton(
+                      textColor: Colors.green,
+                      child: Text(
+                        'Register',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Register()));
+                        //signup screen
+                      },
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ))
               ],
             )));
   }

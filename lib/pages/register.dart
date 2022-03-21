@@ -1,7 +1,5 @@
-import 'package:fct_irs/widget/button_widget.dart';
-import 'package:fct_irs/widget/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:fct_irs/main.dart';
+
 
 void main() {
   runApp(MaterialApp(
@@ -9,7 +7,7 @@ void main() {
   ));
 }
 
-//Login Starts
+//Register Page Starts
 class Register extends StatefulWidget {
   @override
   _State createState() => _State();
@@ -24,18 +22,19 @@ class _State extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: NavigationDrawerWidget(),
+        //drawer: NavigationDrawerWidget(),
         appBar: AppBar(
-          title: Text('FCT-IRS'),
+          automaticallyImplyLeading: true,
+          title: const Text('FCT-IRS'),
         ),
         body: Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
                 Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10),
-                    child: Text(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(10),
+                    child: const Text(
                       'Register',
                       style: TextStyle(
                           color: Colors.green,
@@ -44,28 +43,28 @@ class _State extends State<Register> {
                     )
                 ),
                 Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10),
-                    child: Text(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(10),
+                    child: const Text(
                       'Sign in',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     )
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                   child: TextField(
                     controller: dateController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Date of Incorporation or Date of Birth',
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: TextField(
                     controller: tinController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'TIN',
                     ),
@@ -73,12 +72,12 @@ class _State extends State<Register> {
                 ),
                 Container(
                     height: 50,
-                    margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    margin: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: RaisedButton(
                       textColor: Colors.white,
                       color: Colors.green,
-                      child: Text('continue'),
+                      child: const Text('continue'),
                       //call the API for the login logic
                       onPressed: () {
                         print('Date: ${dateController.text}');
@@ -91,4 +90,4 @@ class _State extends State<Register> {
         )
     );
   }
-} //Login Ends
+} //Register Page Ends

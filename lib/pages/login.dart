@@ -1,7 +1,7 @@
+import 'package:fct_irs/pages/dashboard.dart';
 import 'package:fct_irs/pages/register.dart';
-import 'package:fct_irs/widget/navigation_drawer_widget.dart';
+import 'package:fct_irs/pages/reset_login.dart';
 import 'package:flutter/material.dart';
-import 'package:fct_irs/main.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -25,18 +25,19 @@ class _State extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: NavigationDrawerWidget(),
+        //drawer: NavigationDrawerWidget(),
         appBar: AppBar(
-          title: Text('FCT-IRS'),
+          automaticallyImplyLeading: false,
+          title: const Text('FCT-IRS'),
         ),
         body: Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
                 Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10),
-                    child: Text(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(10),
+                    child: const Text(
                       'Login',
                       style: TextStyle(
                           color: Colors.green,
@@ -44,25 +45,26 @@ class _State extends State<Login> {
                           fontSize: 30),
                     )),
                 Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.all(10),
-                    child: Text(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.all(10),
+                    child: const Text(
                       'Sign in',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+
                     )),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: TextFormField(
                     controller: tinController,
                     validator: (value) {},
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'TIN',
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
                     // validator: (value) {
                     //   if(passwordController.text.isEmpty){
@@ -76,13 +78,13 @@ class _State extends State<Login> {
                     onSubmitted: (value) =>
                         setState(() => this.password = value),
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       labelText: 'Password',
                       //errorText: 'Password is wrong',
                       suffixIcon: IconButton(
                         icon: isPasswordVisible
-                            ? Icon(Icons.visibility_off)
-                            : Icon(Icons.visibility),
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(Icons.visibility),
                         onPressed: () => setState(
                             () => isPasswordVisible = !isPasswordVisible),
                       ),
@@ -93,9 +95,11 @@ class _State extends State<Login> {
                 FlatButton(
                   onPressed: () {
                     //forgot password screen
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ResetLogin()));
                   },
                   textColor: Colors.green,
-                  child: Text('Click here to reset and resend login details>>'),
+                  child: const Text('Click here to reset and resend login details>>'),
                 ),
                 Container(
                     height: 50,
@@ -103,20 +107,22 @@ class _State extends State<Login> {
                     child: RaisedButton(
                       textColor: Colors.white,
                       color: Colors.green,
-                      child: Text('Login'),
+                      child: const Text('Login'),
                       //call the API for the login logic
                       onPressed: () {
                         print('TIN: ${tinController.text}');
                         print('Password: ${password}');
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Dashboard()));
                       },
                     )),
                 Container(
                     child: Row(
                   children: <Widget>[
-                    Text('Does not have account?'),
+                    const Text('Does not have account?'),
                     FlatButton(
                       textColor: Colors.green,
-                      child: Text(
+                      child: const Text(
                         'Register',
                         style: TextStyle(fontSize: 20),
                       ),

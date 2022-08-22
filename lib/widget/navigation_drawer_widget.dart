@@ -1,5 +1,6 @@
 import 'package:fct_irs/pages/change_password.dart';
 import 'package:fct_irs/pages/find_tin.dart';
+import 'package:fct_irs/pages/find_tin_replica.dart';
 import 'package:fct_irs/pages/login.dart';
 import 'package:fct_irs/pages/new_returns.dart';
 import 'package:fct_irs/pages/return_table.dart';
@@ -14,13 +15,15 @@ import 'package:fct_irs/pages/dashboard.dart';
 class NavigationDrawerWidget extends StatelessWidget{
   final padding = const EdgeInsets.symmetric(horizontal: 20);
 
+  const NavigationDrawerWidget({Key? key}) : super(key: key);
+
   //Navigation Menu Items
   @override
   Widget build(BuildContext context) {
-    final name = 'Musa Ibrahim Adeka';
-    final email = 'miadeka@gmail.com';
-    final tin = '1234567890';
-    final urlImage = 'https://www.clipartmax.com/max/m2i8G6N4A0b1G6Z5/';
+    const name = 'Musa Ibrahim Adeka';
+    const email = 'miadeka@gmail.com';
+    const tin = '1234567890';
+    const urlImage = 'https://www.clipartmax.com/max/m2i8G6N4A0b1G6Z5/';
 
     return Drawer(
       child: Material(
@@ -36,7 +39,7 @@ class NavigationDrawerWidget extends StatelessWidget{
               //  onClicked: ()  {  },
             ),
             const SizedBox(height: 0),
-            Divider(color: Colors.white, thickness: 1),
+            const Divider(color: Colors.white, thickness: 1),
             const SizedBox(height: 5),
             buildMenuItem(
               text: 'Dashboard',
@@ -44,45 +47,45 @@ class NavigationDrawerWidget extends StatelessWidget{
               onClicked: () => selectedItem(context, 0),
             ),
             ExpansionTile(
-              leading: Icon(Icons.person),
+              leading: const Icon(Icons.person),
               iconColor: Colors.white,
               collapsedIconColor: Colors.white,
-              title: Text('Profile', style: TextStyle(color: Colors.white),),
+              title: const Text('Profile', style: TextStyle(color: Colors.white),),
               children: <Widget>[
                 ListTile(
-                  contentPadding: EdgeInsets.fromLTRB(70, 0, 0, 0),
-                  title: Text('Change Password', style: TextStyle(color: Colors.white,),),
+                  contentPadding: const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                  title: const Text('Change Password', style: TextStyle(color: Colors.white,),),
                   onTap: () => selectedItem(context, 1),
                 ),
               ],
             ),
             ExpansionTile(
-              leading: Icon(Icons.verified),
+              leading: const Icon(Icons.verified),
               iconColor: Colors.white,
               collapsedIconColor: Colors.white,
               title: const Text('Verifications', style: TextStyle(color: Colors.white),),
               children: <Widget>[
                 ListTile(
-                  contentPadding: EdgeInsets.fromLTRB(70, 0, 0, 0),
-                  title: Text('eTCC', style: TextStyle(color: Colors.white,),),
+                  contentPadding: const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                  title: const Text('eTCC', style: TextStyle(color: Colors.white,),),
                   onTap: () => selectedItem(context, 2),
                 ),
               ],
             ),
             ExpansionTile(
-              leading: Icon(Icons.label_important),
+              leading: const Icon(Icons.label_important),
               iconColor: Colors.white,
               collapsedIconColor: Colors.white,
-              title: Text('Tax Returns', style: TextStyle(color: Colors.white),),
+              title: const Text('Tax Returns', style: TextStyle(color: Colors.white),),
               children: <Widget>[
                 ListTile(
-                  contentPadding: EdgeInsets.fromLTRB(70, 0, 0, 0),
-                  title: Text('File Returns', style: TextStyle(color: Colors.white,),),
+                  contentPadding: const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                  title: const Text('File Returns', style: TextStyle(color: Colors.white,),),
                   onTap: () => selectedItem(context, 3),
                 ),
                 ListTile(
-                  contentPadding: EdgeInsets.fromLTRB(70, 0, 0, 0),
-                  title: Text('View Submitted Returns', style: TextStyle(color: Colors.white,),),
+                  contentPadding: const EdgeInsets.fromLTRB(70, 0, 0, 0),
+                  title: const Text('View Submitted Returns', style: TextStyle(color: Colors.white,),),
                   onTap: () => selectedItem(context, 4),
                 ),
               ],
@@ -111,27 +114,27 @@ class NavigationDrawerWidget extends StatelessWidget{
 }) => InkWell(
     //onTap: onClicked,
     child: Container(
-      padding: padding.add(EdgeInsets.symmetric(vertical: 40)),
+      padding: padding.add(const EdgeInsets.symmetric(vertical: 40)),
       child: Row(
         children: [
           CircleAvatar(radius: 30, backgroundImage: NetworkImage(urlImage)),
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 name,
-                style: TextStyle(fontSize: 17, color: Colors.white),
+                style: const TextStyle(fontSize: 17, color: Colors.white),
               ),
-              SizedBox(height: 3),
+              const SizedBox(height: 3),
               Text(
                 email,
-                style: TextStyle(fontSize: 14, color: Colors.white),
+                style: const TextStyle(fontSize: 14, color: Colors.white),
               ),
-              SizedBox(height: 3),
+              const SizedBox(height: 3),
               Text(
                 tin,
-                style: TextStyle(fontSize: 14, color: Colors.white),
+                style: const TextStyle(fontSize: 14, color: Colors.white),
               ),
             ],
           ),
@@ -185,13 +188,14 @@ class NavigationDrawerWidget extends StatelessWidget{
         break;
       case 4:
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => FileReturnTable()
+            MaterialPageRoute(builder: (context) => const FileReturnTable()
         ));
         // Ready
         break;
       case 5:
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => FindTin()));
+            MaterialPageRoute(builder: (context) => const FindTin()
+            ));
     }
   }
 }

@@ -39,10 +39,8 @@ class _State extends State<FindTin> {
     final String number = numberController.text;
 
     try {
-      final response = await post(Uri.parse(apiUrl),
-          body: {
-            "DOB": date,
-            "BVN": number});
+      final response =
+          await post(Uri.parse(apiUrl), body: {"DOB": date, "BVN": number});
       if (response.statusCode == 200) {
         // If the server did return a 200 OK response,
         // then parse the JSON.
@@ -63,9 +61,7 @@ class _State extends State<FindTin> {
   UserModel user = UserModel();
   Future getUser() async {
     user = await postData();
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   TextEditingController dateController = TextEditingController();
@@ -74,15 +70,15 @@ class _State extends State<FindTin> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   String tin = '1234567890';
-  String name = 'Musa Adeka';
-  String email = 'musa@gmail.com';
+  String name = 'Moses Chukwuemeka Uwechi';
+  String email = 'uwechimoses@gmail.com';
   String errorText = '';
   String date = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //drawer: NavigationDrawerWidget(),
+        //drawer: NavigationDrawerWidget(),
         appBar: AppBar(
           title: const Text('FCT-IRS'),
         ),
@@ -99,16 +95,15 @@ class _State extends State<FindTin> {
                           color: Colors.green,
                           fontWeight: FontWeight.w500,
                           fontSize: 25),
-                    )
-                ),
+                    )),
                 Container(
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.all(10),
                     child: const Text(
                       'Please enter your credentials to search for your TIN.',
-                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-                    )
-                ),
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                    )),
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                   child: TextField(
@@ -186,19 +181,16 @@ class _State extends State<FindTin> {
                         color: Colors.green,
                         child: const Text('Search TIN'),
                         //call the API for the login logic
-                        onPressed:
-                            () async {
+                        onPressed: () async {
                           postData();
                           await getUser();
-                          if(user.status == "Not Found"){
+                          if (user.status == "Not Found") {
                             print('Record Not Found');
-                            setState(() {
-                              
-                            });
-                          }else{
-                            tinController.text = user.tIN?? "";
-                            nameController.text = user.firstname?? "";
-                            emailController.text = user.email?? "";
+                            setState(() {});
+                          } else {
+                            tinController.text = user.tIN ?? "";
+                            nameController.text = user.firstname ?? "";
+                            emailController.text = user.email ?? "";
                           }
                           // tinController.text = user.tIN?? "";
                           // nameController.text = user.firstname?? "";
@@ -212,22 +204,19 @@ class _State extends State<FindTin> {
                           //   nameController.text = user.firstname?? "";
                           //   emailController.text = user.email?? "";
                           // }
-                        }
-                    )
-                ),
+                        })),
                 Container(
                     alignment: Alignment.centerLeft,
                     padding: const EdgeInsets.all(10),
                     child: const Text(
                       'Please enter your credentials to search for your TIN.',
-                      style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.red),
-                    )
-
-                ),
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                    )),
               ],
-            )
-        )
-    );
+            )));
   }
 } //Find TIN Ends
 
